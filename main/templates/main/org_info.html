@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Информация об организации</title>
+    <script>
+        function showAddressWarning(address) {
+            if (confirm(`Адрес будет отправлен на сторонний ресурс: ${address}. Открыть Google Карты?`)) {
+                window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`, "_blank");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Информация об организации</h1>
+    {% if management %}
+    <h2>Информация об основателе</h2>
+    <p>ФИО: {{ management.name }}</p>
+    <p>Должность: {{ management.post }}</p>
+    {% else %}
+    <p>Информация об основателе отсутствует.</p>
+    {% endif %}
+    <p>ИНН: {{ inn }}</p>
+    <p>Название: {{ org_data.name.full_with_opf }}</p>
+    <p>
+        Юридический адрес:
+        <a href="#" onclick="showAddressWarning('{{ org_data.address.value }}')">
+            {{ org_data.address.value }}
+        </a>
+    </p>
+</body>
+</html>

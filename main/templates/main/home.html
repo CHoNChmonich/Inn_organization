@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Поиск организаций</title>
+</head>
+<body>
+    <h1>Поиск организаций по ИНН</h1>
+    <form method="get" action="">
+        <input type="text" name="inn" placeholder="Введите ИНН" required>
+        <button type="submit">Поиск</button>
+    </form>
+    {% if request.GET.inn %}
+        <script>
+            window.location.href = "/info/{{ request.GET.inn }}";
+        </script>
+    {% endif %}
+</body>
+</html>
